@@ -23,8 +23,10 @@ jobs:
       - run: yes | supabase db reset --linked
 
   deploy:
-    needs: migrate
     runs-on: ubuntu-latest
+    needs: migrate
+    outputs:
+      preview-url: ${{ steps.deploy.outputs.preview-url }}
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -34,4 +36,13 @@ jobs:
       - run: npm install --global vercel@canary
       - run: vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
       - run: vercel build --token=$VERCEL_TOKEN
-      - run: npm run deploy:staging
+      - id: deploy
+        run: echo "preview-url=$(vercel deploy --prebuilt --token=$VERCEL_TOKEN)" >> $GITHUB_OUTPUT
+
+  log-preview-url:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - env:
+          PREVIEW_URL: ${{ needs.deploy.outputs.preview-url }}
+        run: echo "$PREVIEW_URL"
