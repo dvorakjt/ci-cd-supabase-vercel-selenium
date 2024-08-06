@@ -9,7 +9,7 @@ async function deployAndSetPreviewURL() {
 function deployAndGetPreviewURL() {
   return new Promise((resolve, reject) => {
     exec(
-      `vercel deploy --prebuilt --token=${process.env.VERCEL_TOKEN}`,
+      `cd ../ && vercel deploy --prebuilt --token=${process.env.VERCEL_TOKEN}`,
       (error, stdout) => {
         if (error) reject(error);
 
