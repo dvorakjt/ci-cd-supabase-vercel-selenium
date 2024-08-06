@@ -3,19 +3,19 @@ const { exec } = require("child_process");
 deployAndSetPreviewURL();
 
 async function deployAndSetPreviewURL() {
-  const previewURL = await deployAndGetPreviewURL();
-  console.log(previewURL);
+  await deployAndGetPreviewURL();
 }
 
 function deployAndGetPreviewURL() {
   return new Promise((resolve, reject) => {
     exec(
       `vercel deploy --prebuilt --token=${process.env.VERCEL_TOKEN}`,
-      (error, stdout, stderr) => {
+      (error, stdout) => {
         if (error) reject(error);
 
-        const previewURL = getPreviewURLFromOutput(stdout);
-        resolve(previewURL);
+        //const previewURL = getPreviewURLFromOutput(stdout);
+        console.log("STDOUT: " + stdout);
+        resolve();
       }
     );
   });
