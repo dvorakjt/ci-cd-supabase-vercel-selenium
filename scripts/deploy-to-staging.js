@@ -1,6 +1,6 @@
 const { exec } = require("child_process");
 
-await deployAndSetPreviewURL();
+deployAndSetPreviewURL();
 
 async function deployAndSetPreviewURL() {
   const previewURL = await deployAndGetPreviewURL();
