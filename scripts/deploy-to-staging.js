@@ -23,5 +23,5 @@ function deployAndGetPreviewURL() {
 
 function getPreviewURLFromOutput(output) {
   const pattern = /Preview: (\S+)/;
-  return pattern.exect(output)[1];
+  return pattern.exec(output)[1];
 }
