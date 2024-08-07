@@ -15,4 +15,4 @@ driver = webdriver.Chrome(options=chrome_options)
 driver.implicitly_wait(10)
 driver.get(url_with_access_token)
 h1 = driver.find_element(By.XPATH, '//h1[text()="Hello World"]')
-assert "Hello World" in h1.textContent
+assert "Hello World" in h1.text
