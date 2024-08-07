@@ -46,7 +46,7 @@ jobs:
       PREVIEW_URL: ${{ needs.deploy.outputs.preview-url }}
     defaults:
       run:
-        working-directory: run/ci-cd-supabase-vercel-selenium/src/__tests__/e2e/
+        working-directory: /src/__tests__/e2e/
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
