@@ -42,17 +42,19 @@ jobs:
   test_homepage_1:
     runs-on: ubuntu-latest
     needs: deploy
-    uses: ./.github/workflows/run-selenium-test.yml
-    with:
-      test: test_homepage_1.py
-      preview-url: ${{ needs.deploy.outputs.preview-url }}
-    secrets: inherit
+    steps:
+      - uses: ./.github/workflows/run-selenium-test.yml
+        with:
+          test: test_homepage_1.py
+          preview-url: ${{ needs.deploy.outputs.preview-url }}
+        secrets: inherit
 
   test_homepage_2:
     runs-on: ubuntu-latest
     needs: deploy
-    uses: ./.github/workflows/run-selenium-test.yml
-    with:
-      test: test_homepage_2.py
-      preview-url: ${{ needs.deploy.outputs.preview-url }}
-    secrets: inherit
+    steps:
+      - uses: ./.github/workflows/run-selenium-test.yml
+        with:
+          test: test_homepage_2.py
+          preview-url: ${{ needs.deploy.outputs.preview-url }}
+        secrets: inherit
