@@ -11,7 +11,7 @@ url_with_access_token = preview_url + '?x-vercel-protection-bypass=' + access_to
 chrome_options = Options()
 chrome_options.add_argument('--headless')
 
-driver = webdriver.Chrome(chrome_options=chrome_options)
+driver = webdriver.Chrome(options=chrome_options)
 driver.implicitly_wait(10)
 driver.get(url_with_access_token)
 h1 = driver.find_element(By.XPATH, '//h1[text()="Hello World"]')
