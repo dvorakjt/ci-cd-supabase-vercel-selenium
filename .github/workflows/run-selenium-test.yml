@@ -9,9 +9,9 @@ on:
       preview-url:
         required: true
         type: string
-      secrets:
-        VERCEL_AUTOMATION_SECRET:
-          required: true
+    secrets:
+      VERCEL_AUTOMATION_SECRET:
+      required: true
 
   jobs:
     run-e2e-tests:
