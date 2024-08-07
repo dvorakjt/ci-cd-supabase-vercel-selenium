@@ -39,14 +39,17 @@ jobs:
       - id: deploy
         run: echo "preview-url=$(vercel deploy --prebuilt --token=$VERCEL_TOKEN)" >> $GITHUB_OUTPUT
 
-  log-preview-url:
+  run-e2e-tests:
     runs-on: ubuntu-latest
     needs: deploy
     env:
       PREVIEW_URL: ${{ needs.deploy.outputs.preview-url }}
+      ACCESS_TOKEN: ${{ secrets.VERCEL_AUTOMATION_SECRET }}
     steps:
       - uses: actions/checkout@v4
+      - uses: browser-actions/setup-chrome@v1
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-      - run: cd src/__tests__/e2e && python myscript.py
+      - run: pip install selenium
+      - run: cd src/__tests__/e2e && python test_homepage.py
