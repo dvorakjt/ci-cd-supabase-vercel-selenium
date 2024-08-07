@@ -24,7 +24,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: migrate
+    needs: reset-db
     outputs:
       preview-url: ${{ steps.deploy.outputs.preview-url }}
     env:
