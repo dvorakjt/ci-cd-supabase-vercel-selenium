@@ -11,7 +11,7 @@ on:
         type: string
     secrets:
       VERCEL_AUTOMATION_SECRET:
-      required: true
+        required: true
 
 jobs:
   run-e2e-tests:
