@@ -42,7 +42,14 @@ jobs:
   log-preview-url:
     runs-on: ubuntu-latest
     needs: deploy
+    env:
+      PREVIEW_URL: ${{ needs.deploy.outputs.preview-url }}
+    defaults:
+      run:
+        working-directory: run/ci-cd-supabase-vercel-selenium/src/__tests__/e2e/
     steps:
-      - env:
-          PREVIEW_URL: ${{ needs.deploy.outputs.preview-url }}
-        run: echo "$PREVIEW_URL"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - run: python3 myscript.py
